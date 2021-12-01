@@ -9,6 +9,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from .forms import (
     AcademicSessionForm,
+
     AcademicTermForm,
     CurrentSessionForm,
     SiteConfigForm,
@@ -21,11 +22,14 @@ from .models import (
     SiteConfig,
     StudentClass,
     Subject,
+   
 )
 
 
 class IndexView(LoginRequiredMixin, TemplateView):
     template_name = "index.html"
+
+
 
 
 class SiteConfigView(LoginRequiredMixin, View):

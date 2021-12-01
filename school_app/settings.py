@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     "apps.staffs",
     "apps.finance",
     "apps.result",
+    "basic",
+    "django.contrib.admin",
 ]
 
 MIDDLEWARE = [

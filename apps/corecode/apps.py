@@ -6,3 +6,5 @@ class CorecodeConfig(AppConfig):
 
     def ready(self):
         import apps.corecode.signals
+
+

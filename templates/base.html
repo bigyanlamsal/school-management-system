@@ -9,7 +9,7 @@
 
   <title>{{ school_name | default:"MySchool" }}</title>
 
-  <!-- Font Awesome Icons -->
+  <!-- Font Awesome Icons --> 
   <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
   <link rel="stylesheet" href="{% static 'plugins/toastr/toastr.min.css' %}">
   <!-- overlayScrollbars -->
@@ -86,6 +86,14 @@
           <ul class="nav nav-pills nav-sidebar flex-column"
             data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
+              <a href="{% url 'admission-list' %}" class="nav-link">
+                <i class="nav-icon fas fa-graduation-cap"></i>
+                <p>
+                  New Admission Requests
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="{% url 'student-list' %}" class="nav-link">
                 <i class="nav-icon fas fa-graduation-cap"></i>
                 <p>
@@ -101,6 +109,7 @@
                 </p>
               </a>
             </li>
+
 
             <li class="nav-header">Finance</li>
             <li class="nav-item">
@@ -147,6 +156,14 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-bars"></i>
+                    <p>
+                      Notices
+                    </p>
+                  </a>
+                </li>
                 <li class="nav-item">
                   <a href="{% url 'sessions' %}" class="nav-link">
                     <i class="nav-icon fas fa-bars"></i>

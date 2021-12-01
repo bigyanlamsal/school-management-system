@@ -11,12 +11,27 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from apps.finance.models import Invoice
 
 from .models import Student, StudentBulkUpload
+from basic.models import Admission_Student
+
+class AdmissionListView(LoginRequiredMixin, ListView):
+    context_object_name = 'obj'
+    model = Admission_Student
+    template_name = "students/admission_list.html"
 
 
 class StudentListView(LoginRequiredMixin, ListView):
+    context_object_name = 'obj'
     model = Student
     template_name = "students/student_list.html"
 
+class AdmissionDetailView(LoginRequiredMixin, DetailView):
+    model = Student
+    template_name = "students/admission_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(AdmissionDetailView, self).get_context_data(**kwargs)
+        
+        return context
 
 class StudentDetailView(LoginRequiredMixin, DetailView):
     model = Student
@@ -63,6 +78,10 @@ class StudentUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 class StudentDeleteView(LoginRequiredMixin, DeleteView):
     model = Student
     success_url = reverse_lazy("student-list")
+
+class AdmissionDeleteView(LoginRequiredMixin, DeleteView):
+    model = Admission_Student
+    success_url = reverse_lazy("admission-list")
 
 
 class StudentBulkUploadView(LoginRequiredMixin, SuccessMessageMixin, CreateView):

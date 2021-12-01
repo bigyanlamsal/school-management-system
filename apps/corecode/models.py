@@ -13,6 +13,7 @@ class SiteConfig(models.Model):
         return self.key
 
 
+
 class AcademicSession(models.Model):
     """Academic Session"""
 
