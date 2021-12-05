@@ -4,3 +4,5 @@ from . import models
 
 admin.site.register(models.Student)
 admin.site.register(models.StudentBulkUpload)
+admin.site.register(models.Notice_info)
+admin.site.register(models.Vacancy_info)

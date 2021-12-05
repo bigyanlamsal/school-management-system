@@ -3,15 +3,18 @@ import csv
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.forms import widgets
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect, request
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, View
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from apps.finance.models import Invoice
 
-from .models import Student, StudentBulkUpload
+from .models import Student, StudentBulkUpload, Notice_info
 from basic.models import Admission_Student
+
+from .form import NoticesForm, VacancyForm
+from django.shortcuts import render, redirect
 
 class AdmissionListView(LoginRequiredMixin, ListView):
     context_object_name = 'obj'
@@ -112,3 +115,44 @@ class DownloadCSVViewdownloadcsv(LoginRequiredMixin, View):
         )
 
         return response
+
+def show_notice(request):
+    form = NoticesForm()
+    return render(request, 'students/notice_publish.html', {'form': form})
+
+def show_vacancy(request):
+    form = VacancyForm()
+    return render(request, 'students/vacancy_publish.html', {'form': form})
+
+
+def get_notice(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form_data = NoticesForm(request.POST, request.FILES)
+        # check whether it's valid:
+        if form_data.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            form_data.save()
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = NoticesForm()
+    return redirect(show_notice)
+
+def get_vacancy(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form_data = VacancyForm(request.POST, request.FILES)
+        # check whether it's valid:
+        if form_data.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            form_data.save()
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = VacancyForm()
+    return redirect(show_vacancy)

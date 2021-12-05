@@ -3,9 +3,11 @@ from basic import models
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
+from apps.students.models import Notice_info, Vacancy_info
 # Create your views here.
 def index(request):
-    return render(request, "basic/index.html")
+    obj = Notice_info.objects.all()
+    return render(request, "basic/index.html",{'obj': obj})
 
 def admin_office(request):
     return render(request, "basic/admin.html")
@@ -14,10 +16,11 @@ def admission(request):
     return render(request, "basic/admission.html")
     
 def contact(request):
-    return render(request, "basic/contact.html")
+    return render(request, "basic/contact.html", {'obj':obj})
 
 def vacancy(request):
-    return render(request, "basic/vacancy.html")
+    obj = Vacancy_info.objects.all()
+    return render(request, "basic/vacancy.html",{'obj':obj})
 
 def admission_backend(request):
     if request.method == "POST":

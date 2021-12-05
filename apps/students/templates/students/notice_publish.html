@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Notice {% endblock title %}
+{% block content %}
+  <p>Publish Your Notice Here</p>
+  
+
+
+<form action="{% url 'get_notice' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
+{% endblock content %}

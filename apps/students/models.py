@@ -48,4 +48,28 @@ class Student(models.Model):
 
 class StudentBulkUpload(models.Model):
     date_uploaded = models.DateTimeField(auto_now=True)
-    csv_file = models.FileField(upload_to="students/bulkupload/")
+    csv_file = models.FileField(upload_to="students/bulkupload/", blank=True)
+
+
+class Notice_info(models.Model):
+    
+    title = models.CharField(max_length = 100)
+    detail = models.TextField(max_length = 1000)
+    passport = models.ImageField(blank=True, upload_to="students/notices_file/")
+    date = models.DateField(default=timezone.now)
+
+
+    def __str__(self):
+        return self.title
+
+class Vacancy_info(models.Model):
+    
+    subject = models.CharField(max_length = 100)
+    level = models.TextField(max_length = 1000)
+    image_vacancy = models.ImageField(blank=True, upload_to="students/vacancy_file/")
+    date = models.DateField(default=timezone.now)
+    end_date = models.DateField(default=None)
+
+
+    def __str__(self):
+        return self.subject
