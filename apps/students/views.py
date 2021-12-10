@@ -1,5 +1,5 @@
 import csv
-
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.forms import widgets
@@ -151,6 +151,7 @@ def get_vacancy(request):
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
+            success_message = "New vacancy successfully added"
             form_data.save()
     # if a GET (or any other method) we'll create a blank form
     else:
